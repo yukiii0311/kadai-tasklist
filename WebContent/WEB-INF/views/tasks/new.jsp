@@ -12,7 +12,7 @@
         </form>
 
         <p>
-         <!--▼index.jspに飛ぶ-->
+         <!--▼IndexServletに飛ぶ-->
             <a href="${pageContext.request.contextPath}/index">一覧に戻る</a>
         </p>
     </c:param>
