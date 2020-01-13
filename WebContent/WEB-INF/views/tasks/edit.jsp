@@ -11,10 +11,25 @@
             <c:import url="_form.jsp" />
         </form>
 
-        <p>
-            <!--▼IndexServletに飛ぶ-->
-            <a href="${pageContext.request.contextPath}/index">一覧に戻る</a>
-        </p>
+         <!--▼IndexServletに飛ぶ-->
+        <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p>
+
+         <!--▼これ押したらjavasclipt（確認ウィンドウの表示）を呼ぶ-->　
+        <p><a href="#" onclick="confirmDestroy();">このメッセージを削除する</a></p>
+
+        <!--▼DestroyServletに移動-->
+        <form method="POST" action="${pageContext.request.contextPath}/destroy">
+          <input type ="hidden" name="_token" value="${_token}"/>
+        </form>
+
+        <!--▼確認ウィンドウの表示-->
+        <script>
+        function confirmDestroy(){
+            if(confirm("本当に削除してよろしいですか？")){
+                document.forms[1].submit();
+            }
+        }
+        </script>
 
     </c:param>
 
