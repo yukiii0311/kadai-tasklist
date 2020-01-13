@@ -1,9 +1,8 @@
 package controllers;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 
-import javax.persistence.EntityManager;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,47 +10,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Tasks;
-import utils.DBUtil;
 
 
 @WebServlet("/new")
-public class newServlet extends HttpServlet {
+public class NewServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
 
-    public newServlet() {
+    public NewServlet() {
         super();
 
     }
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // CSRF対策（セキュリティ対策、サイト外からPOST送信された投稿を拒否
+        request.setAttribute("_token", request.getSession().getId());
 
-        EntityManager em = DBUtil.createEntityManager();
-        em.getTransaction().begin();
+        // おまじないとしてのインスタンスを生成）（画面表示時のエラー回避、"文字数0のデータ"をフォームに渡すため）
+        request.setAttribute("task", new Tasks());
 
-        //Task（DTO）のインスタンスを生成
-        Tasks t = new Tasks();
-
-        //ｔの各プロパティにデータを代入（書き込む系）
-        String title = "taro";
-        t.setTitle(title);
-
-        String content = "hello";
-        t.setContent(content);
-
-        //作成時間・更新時間を代入（勝手に反映系）
-        Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-        t.setCreated_at(currentTime);
-        t.setUpdated_at(currentTime);
-
-        //データベースに保存
-        em.persist(t);
-        em.getTransaction().commit();
-
-        //自動採番された絵IDの値を表示
-        response.getWriter().append(Integer.valueOf(t.getId()).toString());
-        em.close();
-    }
-
+        //new.jspへ（フォワード
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/new.jsp");
+        rd.forward(request, response);
+     }
 }

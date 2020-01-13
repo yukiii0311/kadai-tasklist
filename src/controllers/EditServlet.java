@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/edit")
-public class editServlet extends HttpServlet {
+public class EditServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
 
-    public editServlet() {
+    public EditServlet() {
         super();
 
     }
