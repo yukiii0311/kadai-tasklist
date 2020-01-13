@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
@@ -14,8 +16,15 @@ import javax.persistence.Table;
 
 
 @Entity
+@NamedQueries({  //一覧表示するデータを取得するためのJPQL
+    @NamedQuery(
+            name = "getAllTasks",
+            query = "SELECT m FROM Tasks AS m ORDER BY m.id DESC"
+            )
+})
 @Table(name = "tasks")
-public class TaskDto {
+public class Tasks {
+
 
     //プロパティ、フィールド（データベースと紐付け）
     //メッセージid
@@ -41,9 +50,6 @@ public class TaskDto {
     private Timestamp updated_at;
 
 
-
-
-
     //getter
 
     public Integer getId() {
@@ -66,29 +72,28 @@ public class TaskDto {
         return updated_at;
     }
 
-
-
     //setter
 
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
-    }
-
-    public void setUpdated_at(Timestamp updated_at) {
-        this.updated_at = updated_at;
-    }
-
-    public void setId(Integer id) {
+    public void setId(Integer Id){
         this.id = id;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title){
         this.title = title;
     }
 
-    public void setContent(String content) {
+    public void setContent(String content){
         this.content = content;
     }
 
+    public void setCreated_at(Timestamp created_at){
+        this.created_at = created_at;
+    }
 
-}
+    public void setUpdated_at(Timestamp updated_at){
+        this.updated_at = updated_at;
+    }
+
+
+    }
+
