@@ -6,14 +6,14 @@
 
         <h2>id:${task.id}のタスク編集ページ</h2>
         <!--▼「update」にデータを送るフォーム -->
-        <form method="POST" action="${pageContent.request.contextPath}/update">
+        <form method="POST" action="${pageContext.request.contextPath}/update">
             <!--▼「＿form.jsp」をインポート（タイトル、内容入力蘭）-->
             <c:import url="_form.jsp" />
         </form>
 
         <p>
             <!--▼IndexServletに飛ぶ-->
-            <a href="${pageContexxt.request.contextPath}/index">一覧に戻る</a>
+            <a href="${pageContext.request.contextPath}/index">一覧に戻る</a>
         </p>
 
     </c:param>

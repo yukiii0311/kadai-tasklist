@@ -39,7 +39,7 @@ public class IndexServlet extends HttpServlet {
         //リクエストスコープ。ビューにデータを送るための命令（変数"tasks"に、テーブルのタスク一覧（tasks）をセット）
         request.setAttribute("tasks", tasks);
 
-        //レスポンス画面としてjspを呼び出し（フォワード）
+        //レスポンス画面としてindex.jspを呼び出し（フォワード）
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/index.jsp");
         rd.forward(request, response);
     }
