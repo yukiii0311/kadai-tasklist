@@ -25,7 +25,7 @@ public class IndexServlet extends HttpServlet {
 
     }
 
-//コメント
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         EntityManager em = DBUtil.createEntityManager();  //EntityManagerの生成
