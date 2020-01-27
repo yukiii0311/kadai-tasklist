@@ -30,7 +30,7 @@ public class NewServlet extends HttpServlet {
         // おまじないとしてのインスタンスを生成）（画面表示時のエラー回避、"文字数0のデータ"をフォームに渡すため）
         request.setAttribute("task", new Tasks());
 
-        //new.jspへ（フォワード
+        //new.jspへ（フォワード)
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/new.jsp");
         rd.forward(request, response);
      }
